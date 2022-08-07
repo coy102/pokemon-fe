@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { debounce } from 'lodash'
 
@@ -8,6 +8,8 @@ import { GetAllPokemonQuery } from '~/gqlservices/queries/pokemon'
 
 const useHooks = () => {
   const offsetRef = useRef(null)
+
+  const [toggleDialog, setToggleDialog] = useState(false)
 
   // Initiate pokemon lazy query
   const [
@@ -62,6 +64,10 @@ const useHooks = () => {
     }
   }, 300)
 
+  const handleToggleDialog = useCallback(() => {
+    setToggleDialog((prev) => !prev)
+  }, [])
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
 
@@ -78,9 +84,11 @@ const useHooks = () => {
   }, [])
 
   return {
+    handleToggleDialog,
     loading,
     memoPokemon,
     networkStatus,
+    toggleDialog,
   }
 }
 
