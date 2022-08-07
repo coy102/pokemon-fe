@@ -10,7 +10,7 @@ const StyledAppbar = styled(AppBar)({
 })
 
 const Navbar = () => (
-  <StyledAppbar position="sticky">
+  <StyledAppbar position="fixed">
     <Toolbar variant="dense">
       <Typography variant="h6" style={{ flexGrow: 1 }}>
         Pokemon
