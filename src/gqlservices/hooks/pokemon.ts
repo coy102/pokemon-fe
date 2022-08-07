@@ -6,6 +6,7 @@ import {
   GetAllPokemonQueryVariables,
 } from '../queries/pokemon'
 
+// Apollo lazy query get all pokemon
 export function useGetAllPokemonLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<
     GetAllPokemonQuery,

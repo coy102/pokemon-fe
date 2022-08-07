@@ -12,6 +12,7 @@ import useHooks from './hooks'
 const Pokemons = () => {
   const { memoPokemon, networkStatus } = useHooks()
 
+  // Render loading on first load
   if (networkStatus === NetworkStatus.loading) {
     return <LoadingState />
   }
@@ -19,7 +20,7 @@ const Pokemons = () => {
   return (
     <Box display="flex" flexDirection="column">
       <Grid spacing={2} container>
-        {memoPokemon?.map((pokemon) => (
+        {memoPokemon.map((pokemon) => (
           <Grid key={pokemon.id} xs={6} sm={6} item>
             <CardItem
               coverSrc={`${POKEMON_IMAGE_URL}${pokemon.id}.png`}
@@ -29,6 +30,7 @@ const Pokemons = () => {
           </Grid>
         ))}
       </Grid>
+      {/* Render loading when triggering fetchMore */}
       {networkStatus === NetworkStatus.fetchMore && <LoadingState />}
     </Box>
   )

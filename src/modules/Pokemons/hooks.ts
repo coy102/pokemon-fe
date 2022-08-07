@@ -9,6 +9,7 @@ import { GetAllPokemonQuery } from '~/gqlservices/queries/pokemon'
 const useHooks = () => {
   const offsetRef = useRef(null)
 
+  // Initiate pokemon lazy query
   const [
     getAllPokemonLazy,
     { data: pokemonData, fetchMore, networkStatus, loading },
@@ -17,19 +18,27 @@ const useHooks = () => {
     notifyOnNetworkStatusChange: true,
   })
 
+  // Memoized result query
   const memoPokemon = useMemo(() => pokemonData?.pokemons || [], [pokemonData])
 
+  // Handle load more pokemon list
   const handleLoadMore = useCallback(() => {
+    // Only execute when fetchMore is defined
     if (fetchMore) {
+      // increment offset ref, we can't use state inside updatedQuery
+      // for alternative we are using ref
       offsetRef.current += 10
+
       fetchMore({
         variables: {
           ...DEFAULT_LIST_PARAMETER,
           offset: offsetRef.current,
         },
         updateQuery(previousQueryResult, { fetchMoreResult }) {
+          // when new result is undefined, return previous result
           if (!fetchMoreResult) return previousQueryResult
 
+          // Merge previos result with new result
           const result: GetAllPokemonQuery = {
             pokemons: [
               ...previousQueryResult.pokemons,
@@ -44,6 +53,7 @@ const useHooks = () => {
   }, [fetchMore])
 
   const handleScroll = debounce(() => {
+    // Triggering fetch more when user is scrolling the screen
     if (
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 500
@@ -55,6 +65,7 @@ const useHooks = () => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
 
+    // Initial load pokemon list
     getAllPokemonLazy({
       variables: {
         ...DEFAULT_LIST_PARAMETER,
