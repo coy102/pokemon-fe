@@ -11,6 +11,6 @@ module.exports = withPWA({
     sw: '/logo/sw.js',
   },
   images: {
-    domains: ['localhost', 's4.anilist.co'],
+    domains: ['localhost'],
   },
 })
