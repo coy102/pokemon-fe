@@ -10,6 +10,7 @@ const useHooks = () => {
   const offsetRef = useRef(null)
 
   const [toggleDialog, setToggleDialog] = useState(false)
+  const [types, setTypes] = useState([])
 
   // Initiate pokemon lazy query
   const [
@@ -68,27 +69,71 @@ const useHooks = () => {
     setToggleDialog((prev) => !prev)
   }, [])
 
+  // handle click types multiple value
+  const handleClickTypes = useCallback(
+    (value) => () => {
+      const currentIndex = types.findIndex((t) => t === value)
+
+      if (currentIndex >= 0) {
+        // when user is selected same type, it will remove current type
+        const newTypes = [...types]
+
+        newTypes.splice(currentIndex, 1)
+
+        setTypes(newTypes)
+
+        return
+      }
+
+      // set new type
+      setTypes((prev) => [...prev, value])
+    },
+    [types]
+  )
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
+
+    let whereParam = {}
+
+    if (types.length > 0) {
+      // On send where param when state types is not empty
+      whereParam = {
+        _and: [
+          {
+            pokemon_v2_pokemontypes: {
+              pokemon_v2_type: {
+                id: {
+                  _in: types, // _in: its means include
+                },
+              },
+            },
+          },
+        ],
+      }
+    }
 
     // Initial load pokemon list
     getAllPokemonLazy({
       variables: {
         ...DEFAULT_LIST_PARAMETER,
+        where: whereParam,
       },
     })
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [types])
 
   return {
+    handleClickTypes,
     handleToggleDialog,
     loading,
     memoPokemon,
     networkStatus,
     toggleDialog,
+    types,
   }
 }
 
