@@ -11,6 +11,6 @@ module.exports = withPWA({
     sw: '/logo/sw.js',
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', process.env.NEXT_PUBLIC_IMAGE_DOMAIN],
   },
 })
