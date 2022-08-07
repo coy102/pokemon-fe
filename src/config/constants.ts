@@ -7,6 +7,7 @@ export const POKEMON_IMAGE_URL = `${ENV.imageDomain}/PokeAPI/sprites/master/spri
 
 export const DEFAULT_LIST_PARAMETER = {
   limit: 10,
+  offset: 0,
 }
 
 const META = {
