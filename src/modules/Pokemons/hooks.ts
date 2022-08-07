@@ -11,7 +11,7 @@ const useHooks = () => {
 
   const [
     getAllPokemonLazy,
-    { data: pokemonData, fetchMore },
+    { data: pokemonData, fetchMore, networkStatus, loading },
   ] = useGetAllPokemonLazyQuery({
     fetchPolicy: 'cache-and-network',
     notifyOnNetworkStatusChange: true,
@@ -67,7 +67,9 @@ const useHooks = () => {
   }, [])
 
   return {
+    loading,
     memoPokemon,
+    networkStatus,
   }
 }
 

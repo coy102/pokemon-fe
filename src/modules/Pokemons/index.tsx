@@ -1,14 +1,21 @@
 import { memo } from 'react'
 
+import { NetworkStatus } from '@apollo/client'
 import { Box, Grid } from '@mui/material'
 
 import CardItem from '~/components/CardItem'
+import LoadingState from '~/components/Message/LoadingState'
 import { POKEMON_IMAGE_URL } from '~/config/constants'
 
 import useHooks from './hooks'
 
 const Pokemons = () => {
-  const { memoPokemon } = useHooks()
+  const { memoPokemon, networkStatus } = useHooks()
+
+  if (networkStatus === NetworkStatus.loading) {
+    return <LoadingState />
+  }
+
   return (
     <Box display="flex" flexDirection="column">
       <Grid spacing={2} container>
@@ -22,6 +29,7 @@ const Pokemons = () => {
           </Grid>
         ))}
       </Grid>
+      {networkStatus === NetworkStatus.fetchMore && <LoadingState />}
     </Box>
   )
 }
