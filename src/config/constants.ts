@@ -1,3 +1,7 @@
+export const DEFAULT_LIST_PARAMETER = {
+  limit: 10,
+}
+
 const META = {
   image: '',
   title: 'Pokemon',
