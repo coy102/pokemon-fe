@@ -15,7 +15,7 @@ const globalCss = css`
     overflow: hidden;
   }
   .drawer {
-    width: 500px !important;
+    maxwidth: 500px !important;
     margin: 0px auto;
   }
 `

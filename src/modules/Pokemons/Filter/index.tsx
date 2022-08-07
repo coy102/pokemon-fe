@@ -46,12 +46,11 @@ const Filter = ({
         title="Filter"
       >
         <Box mb={4}>By pokemon type</Box>
-
         <Box>
           {memoTypes.map((type) => (
             <CustomChip
-              onClick={handleClickTypes(type.id)}
               key={type.id}
+              onClick={handleClickTypes(type.id)}
               typeName={type.name}
               selected={types.includes(type.id)}
             />
