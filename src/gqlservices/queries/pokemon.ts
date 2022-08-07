@@ -10,7 +10,7 @@ export type GetAllPokemonQueryVariables = Types.Exact<{
 export type GetAllPokemonQuery = {
   pokemons: Array<
     Pick<Types.Pokemon, 'id' | 'name'> & {
-      types: Array<{ type?: Types.Maybe<Pick<Types.PokemonWhere, 'name'>> }>
+      types: Array<Types.PokemonType>
     }
   >
 }

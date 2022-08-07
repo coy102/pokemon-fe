@@ -17,6 +17,7 @@ const Pokemons = () => {
             <CardItem
               coverSrc={`${POKEMON_IMAGE_URL}${pokemon.id}.png`}
               title={pokemon.name}
+              types={pokemon.types}
             />
           </Grid>
         ))}
