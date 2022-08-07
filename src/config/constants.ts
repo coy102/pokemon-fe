@@ -3,6 +3,8 @@ export const ENV = {
   imageDomain: process.env.NEXT_PUBLIC_IMAGE_DOMAIN,
 }
 
+export const POKEMON_IMAGE_URL = `${ENV.imageDomain}/PokeAPI/sprites/master/sprites/pokemon/`
+
 export const DEFAULT_LIST_PARAMETER = {
   limit: 10,
 }
