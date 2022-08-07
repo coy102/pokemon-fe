@@ -29,6 +29,11 @@ export type Pokemon = {
   name: Scalars['String']
 }
 
+export type Types = {
+  id: Scalars['Int']
+  name: Scalars['String']
+}
+
 export type PokemonType = {
   type?: Maybe<{
     name: Scalars['String']

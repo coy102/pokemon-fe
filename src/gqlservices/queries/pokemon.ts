@@ -37,3 +37,18 @@ export const GetAllPokemon = gql`
     }
   }
 `
+
+export type GetAllTypesQueryVariables = Types.Exact<{ [key: string]: never }>
+
+export type GetAllTypesQuery = {
+  types: Array<Types.Types>
+}
+
+export const GetAllTypes = gql`
+  query getAllTypes {
+    types: pokemon_v2_type {
+      id
+      name
+    }
+  }
+`
