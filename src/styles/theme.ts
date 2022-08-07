@@ -1,4 +1,4 @@
-import { red } from '@mui/material/colors'
+import { amber, indigo, red } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 
 // https://nekocalc.com/px-to-rem-converter
@@ -14,14 +14,18 @@ export const fontSize = {
 // Create a theme instance.
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#556cd6',
+      main: amber[100],
     },
     secondary: {
-      main: '#19857b',
+      main: indigo.A400,
     },
     error: {
       main: red.A400,
+    },
+    background: {
+      default: '#13171d',
     },
   },
   typography: {

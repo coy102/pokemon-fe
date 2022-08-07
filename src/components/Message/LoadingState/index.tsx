@@ -3,10 +3,8 @@ import { memo } from 'react'
 import { Box, CircularProgress } from '@mui/material'
 
 const LoadingState = () => (
-  <Box display="flex" justifyContent="center">
-    <Box>
-      <CircularProgress />
-    </Box>
+  <Box textAlign="center">
+    <CircularProgress color="primary" size={20} />
   </Box>
 )
 

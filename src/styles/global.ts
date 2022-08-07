@@ -14,6 +14,10 @@ const globalCss = css`
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .drawer {
+    width: 500px !important;
+    margin: 0px auto;
+  }
 `
 
 export default globalCss
