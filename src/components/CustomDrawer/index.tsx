@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close'
 import {
   AppBar,
   Box,
-  Button,
   Drawer,
   IconButton,
   Toolbar,
@@ -29,6 +28,9 @@ const CustomDrawer = ({ children, open, handleToggleDialog, title }: Props) => (
   >
     <AppBar sx={{ position: 'relative' }}>
       <Toolbar>
+        <Typography sx={{ ml: 2, flex: 1 }} component="div">
+          {title}
+        </Typography>
         <IconButton
           edge="start"
           color="inherit"
@@ -37,12 +39,6 @@ const CustomDrawer = ({ children, open, handleToggleDialog, title }: Props) => (
         >
           <CloseIcon />
         </IconButton>
-        <Typography sx={{ ml: 2, flex: 1 }} component="div">
-          {title}
-        </Typography>
-        <Button color="primary" onClick={handleToggleDialog}>
-          Submit
-        </Button>
       </Toolbar>
     </AppBar>
     <Box py={10} px={3}>

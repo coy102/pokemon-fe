@@ -15,12 +15,20 @@ export type Scalars = {
   Float: number
 }
 
-export type PokemonWhere = {
-  _and?: Maybe<Array<PokemonWhere>>
-  name?: Maybe<StringComparison>
+export type TypeWhere = {
+  id?: Maybe<Comparison>
 }
 
-export type StringComparison = {
+export type PokemonTypeWhere = {
+  pokemon_v2_type?: Maybe<TypeWhere>
+}
+
+export type PokemonWhere = {
+  _and?: Maybe<Array<PokemonWhere>>
+  pokemon_v2_pokemontypes?: Maybe<PokemonTypeWhere>
+}
+
+export type Comparison = {
   _in?: Maybe<Array<Scalars['String']>>
 }
 

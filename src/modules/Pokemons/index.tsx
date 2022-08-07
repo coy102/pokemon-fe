@@ -14,10 +14,12 @@ const Filter = dynamic(() => import('./Filter'))
 
 const Pokemons = () => {
   const {
+    handleClickTypes,
     handleToggleDialog,
     memoPokemon,
     networkStatus,
     toggleDialog,
+    types,
   } = useHooks()
 
   // Render loading on first load
@@ -42,7 +44,12 @@ const Pokemons = () => {
         {/* Render loading when triggering fetchMore */}
         {networkStatus === NetworkStatus.fetchMore && <LoadingState />}
       </Box>
-      <Filter handleToggleDialog={handleToggleDialog} open={toggleDialog} />
+      <Filter
+        handleClickTypes={handleClickTypes}
+        handleToggleDialog={handleToggleDialog}
+        open={toggleDialog}
+        types={types}
+      />
     </Box>
   )
 }
