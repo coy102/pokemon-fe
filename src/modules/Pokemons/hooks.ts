@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { debounce } from 'lodash'
-
 import { DEFAULT_LIST_PARAMETER } from '~/config/constants'
 import { useGetAllPokemonLazyQuery } from '~/gqlservices/hooks/pokemon'
 import { GetAllPokemonQuery } from '~/gqlservices/queries/pokemon'
@@ -15,7 +13,7 @@ const useHooks = () => {
   // Initiate pokemon lazy query
   const [
     getAllPokemonLazy,
-    { data: pokemonData, fetchMore, networkStatus, loading },
+    { data: pokemonData, fetchMore, networkStatus },
   ] = useGetAllPokemonLazyQuery({
     fetchPolicy: 'cache-and-network',
     notifyOnNetworkStatusChange: true,
@@ -55,16 +53,6 @@ const useHooks = () => {
     }
   }, [fetchMore])
 
-  const handleScroll = debounce(() => {
-    // Triggering fetch more when user is scrolling the screen
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 500
-    ) {
-      handleLoadMore()
-    }
-  }, 300)
-
   const handleToggleDialog = useCallback(() => {
     setToggleDialog((prev) => !prev)
   }, [])
@@ -92,8 +80,6 @@ const useHooks = () => {
   )
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-
     let whereParam = {}
 
     if (types.length > 0) {
@@ -120,16 +106,12 @@ const useHooks = () => {
         where: whereParam,
       },
     })
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [types])
 
   return {
     handleClickTypes,
+    handleLoadMore,
     handleToggleDialog,
-    loading,
     memoPokemon,
     networkStatus,
     toggleDialog,

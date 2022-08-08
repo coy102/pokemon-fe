@@ -4,6 +4,7 @@ import { NetworkStatus } from '@apollo/client'
 import { Box, Grid } from '@mui/material'
 import dynamic from 'next/dynamic'
 import LazyLoad from 'react-lazyload'
+import { Waypoint } from 'react-waypoint'
 
 import CardItem from '~/components/CardItem'
 import LoadingState from '~/components/Message/LoadingState'
@@ -16,6 +17,7 @@ const Filter = dynamic(() => import('./Filter'))
 
 const Pokemons = () => {
   const {
+    handleLoadMore,
     handleClickTypes,
     handleToggleDialog,
     memoPokemon,
@@ -33,14 +35,17 @@ const Pokemons = () => {
     <Box position="relative">
       <Box display="flex" flexDirection="column">
         <Grid spacing={2} container>
-          {memoPokemon.map((pokemon) => (
+          {memoPokemon.map((pokemon, i) => (
             <Grid key={pokemon.id} xs={6} sm={6} item>
-              <LazyLoad debounce={500} placeholder={<Skeleton />}>
+              <LazyLoad debounce={300} placeholder={<Skeleton />}>
                 <CardItem
                   coverSrc={`${POKEMON_IMAGE_URL}${pokemon.id}.png`}
                   title={pokemon.name}
                   types={pokemon.types}
                 />
+                {i === memoPokemon.length - 1 && (
+                  <Waypoint onEnter={handleLoadMore} />
+                )}
               </LazyLoad>
             </Grid>
           ))}
