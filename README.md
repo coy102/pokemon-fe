@@ -15,8 +15,8 @@ Also the starter using my custom nextjs boilerplate [https://github.com/coy102/n
 ### Locally
 
 ```
-git clone https://github.com/zebraxid/next-ts-boilerplate
-cd next-ts-boilerplate
+git clone https://github.com/coy102/pokemon-fe
+cd pokemon-fe
 yarn install
 cp .env.example .env
 yarn start
