@@ -1,6 +1,10 @@
-# Next.js TypeScript Boilerplate
+# Pokemon list
 
-ZebraX Frontend Boilerplate using TypeScript, React, GraphQL, Apollo Client and Next.js
+React web to show pokemon list using [pokeapi](https://pokeapi.co) but using Graphql API not the REST one [https://beta.pokeapi.co/graphql/v1beta](https://beta.pokeapi.co/graphql/v1beta).
+
+Also the starter using my custom nextjs boilerplate [https://github.com/coy102/next-ts-starter](https://github.com/coy102/next-ts-starter).
+
+[Live Demo](https://pokemon-fe-git-master-fajarsep12.vercel.app)
 
 ## Prerequisites
 
@@ -17,11 +21,9 @@ yarn install
 cp .env.example .env
 yarn start
 ```
+### Run Unit Test
 
-## Documentation
-
-For more detailed documentation, check the [wiki pages here](https://github.com/zebraxid/next-ts-boilerplate/wiki)
-
-## Contributing
-
-Please check our [contributing guide](CONTRIBUTING.md).
+```
+yarn test
+yarn test:coverage
+```
